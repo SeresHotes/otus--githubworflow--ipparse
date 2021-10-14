@@ -11,8 +11,8 @@ jobs:
           submodules: true
       - run: sudo apt-get update
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
-      - run: cmake --build .
-      - run: cmake --build . --target package
+      - run: cmake --build ./build
+      - run: cmake --build ./build --target package
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

@@ -8,19 +8,19 @@ set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
 project(helloworld VERSION ${PROJECT_VESRION})
 
-add_executable(project_main main.cpp)
+add_executable(ip_filter main.cpp)
 
-set_target_properties(project_main PROPERTIES
+set_target_properties(ip_filter PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 ) 
 
 if (MSVC)
-    target_compile_options(project_main PRIVATE
+    target_compile_options(ip_filter PRIVATE
         /W4 
     )
 else ()
-    target_compile_options(project_main PRIVATE
+    target_compile_options(ip_filter PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()
@@ -28,9 +28,9 @@ endif()
 find_program (BASH_PROGRAM bash)
 include(CTest)
 enable_testing()
-add_test(IntegratedTest ${BASH_PROGRAM} ../test.sh ./project_main.exe ../ip_filter.tsv)
+add_test(IntegratedTest ${BASH_PROGRAM} ../test.sh ./ip_filter.exe ../ip_filter.tsv)
 
-install(TARGETS project_main RUNTIME DESTINATION bin)
+install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
