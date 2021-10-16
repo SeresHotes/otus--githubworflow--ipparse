@@ -26,9 +26,11 @@ else ()
 endif()
 
 find_program (BASH_PROGRAM bash)
+list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 include(CTest)
 enable_testing()
-add_test(IntegratedTest ${BASH_PROGRAM} ../test.sh ./ip_filter.exe ../ip_filter.tsv)
+add_test(IntegratedTest ${BASH_PROGRAM} ${CMAKE_SOURCE_DIR}/test.sh 
+    ${CMAKE_CURRENT_BINARY_DIR}/ip_filter.exe ${CMAKE_SOURCE_DIR}/ip_filter.tsv)
 
 install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
