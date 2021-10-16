@@ -30,7 +30,7 @@ list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 include(CTest)
 enable_testing()
 add_test(IntegratedTest ${BASH_PROGRAM} ${CMAKE_SOURCE_DIR}/test.sh 
-    ${CMAKE_CURRENT_BINARY_DIR}/ip_filter.exe ${CMAKE_SOURCE_DIR}/ip_filter.tsv)
+    ${CMAKE_CURRENT_BINARY_DIR}/ip_filter ${CMAKE_SOURCE_DIR}/ip_filter.tsv)
 
 install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
