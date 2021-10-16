@@ -6,21 +6,21 @@ endif()
 
 set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
-project(helloworld VERSION ${PROJECT_VESRION})
+project(ip_filter VERSION ${PROJECT_VESRION})
 
-add_executable(ip_filter main.cpp)
+add_executable(ip_filter_cli main.cpp)
 
-set_target_properties(ip_filter PROPERTIES
+set_target_properties(ip_filter_cli PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 ) 
 
 if (MSVC)
-    target_compile_options(ip_filter PRIVATE
+    target_compile_options(ip_filter_cli PRIVATE
         /W4 
     )
 else ()
-    target_compile_options(ip_filter PRIVATE
+    target_compile_options(ip_filter_cli PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()
@@ -30,9 +30,9 @@ list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 include(CTest)
 enable_testing()
 add_test(IntegratedTest ${BASH_PROGRAM} ${CMAKE_SOURCE_DIR}/test.sh 
-    ${CMAKE_CURRENT_BINARY_DIR}/ip_filter ${CMAKE_SOURCE_DIR}/ip_filter.tsv)
+    ${CMAKE_CURRENT_BINARY_DIR}/ip_filter_cli ${CMAKE_SOURCE_DIR}/ip_filter.tsv)
 
-install(TARGETS ip_filter RUNTIME DESTINATION bin)
+install(TARGETS ip_filter_cli RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
